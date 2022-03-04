@@ -126,9 +126,9 @@ Online version does not require to run any software on your computer. Offline ve
 
 ## Support
 
-**Sponsor 💕**. This project is free, and it might not be tempting to donate since you don't have to pay. But your donations will ensure that this project stays alive. A monthly coffee from you would make a difference. Recurring donations allow me to spend more time and resources on this project. Consider sponsoring on [GitHub Sponsors](https://github.com/sponsors/undergroundwires), or you can donate using [other ways such as crypto or a coffee](https://undergroundwires.dev/donate).
+**Sponsor 💕**. Consider sponsoring on [GitHub Sponsors](https://github.com/sponsors/undergroundwires), or you can donate using [other ways such as crypto or a coffee](https://undergroundwires.dev/donate).
 
-**Star 🤩**. I know that not everyone can afford donating a coffee to show support. In this case, feel free to give it a star ⭐ . It helps me to see that you appreciate the project.
+**Star 🤩**. Feel free to give it a star ⭐ .
 
 **Contribute 👷**. Contributions of any type are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) as the starting point. It includes useful information like [how to add new scripts](./CONTRIBUTING.md#extend-scripts).
 
