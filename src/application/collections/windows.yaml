@@ -61,7 +61,12 @@ actions:
                         children:
                             -
                                 category: Clear Quick Access (jump) lists
-                                docs: https://cyberforensicator.com/wp-content/uploads/2017/01/1-s2.0-S1742287616300202-main.2-14.pdf
+                                docs: |-
+                                    The records maintained by Jump Lists have the potential to provide a rich source of evidence about users' historic activity to the forensic investigator. The structure and artifacts
+                                    recorded by Jump Lists have been widely discussed in various forensic communities since its debut in Microsoft Windows 7. However, this feature has more capabilities to reveal
+                                    evidence in Windows 10, due to its modified structure. [1]
+
+                                    [1]: https://cyberforensicator.com/wp-content/uploads/2017/01/1-s2.0-S1742287616300202-main.2-14.pdf "A forensic insight into Windows 10 Jump Lists | Bhupendra Singh, Upasna Singh"
                                 children:
                                     -
                                         name: Clear recently accessed files
@@ -152,12 +157,14 @@ actions:
                             -
                                 name: Clear Internet Explorer caches
                                 recommend: standard
-                                docs:
-                                    # INetCache
-                                        - https://support.microsoft.com/en-us/help/260897/how-to-delete-the-contents-of-the-temporary-internet-files-folder
-                                        - https://docs.microsoft.com/en-us/troubleshoot/browsers/apps-access-admin-web-cache
-                                    # WebCache
-                                        - https://docs.microsoft.com/en-us/troubleshoot/browsers/apps-access-admin-web-cache
+                                docs: |-
+                                    Consists of `INetCache` [1] [2] and `WebCache` [2].
+                                    
+                                    These caches can be used to recover web-browsing traces that would compromise the privacy [3].
+                                    
+                                    [1]: https://support.microsoft.com/en-us/help/260897/how-to-delete-the-contents-of-the-temporary-internet-files-folder
+                                    [2]: https://docs.microsoft.com/en-us/troubleshoot/browsers/apps-access-admin-web-cache
+                                    [3]: https://www.sonntag.cc/teaching/Security_and_WWW_SS16/4_Practice_day/Recovering_web-browsing_traces.pdf
                                 code: |-
                                     del /f /q "%localappdata%\Microsoft\Windows\INetCache\IE\*"
                                     rd /s /q "%localappdata%\Microsoft\Windows\WebCache"

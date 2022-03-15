@@ -92,7 +92,7 @@ describe('Script', () => {
         }
       });
     });
-    describe('documentationUrls', () => {
+    describe('docs', () => {
       it('sets as expected', () => {
         // arrange
         const expected = ['doc1', 'doc2'];
@@ -100,7 +100,7 @@ describe('Script', () => {
         const sut = new ScriptBuilder()
           .withDocumentationUrls(expected)
           .build();
-        const actual = sut.documentationUrls;
+        const actual = sut.docs;
         // assert
         expect(actual).to.equal(expected);
       });
@@ -115,7 +115,7 @@ class ScriptBuilder {
 
   private level = RecommendationLevel.Standard;
 
-  private documentationUrls: readonly string[];
+  private docs: readonly string[] = undefined;
 
   public withCodes(code: string, revertCode = ''): ScriptBuilder {
     this.code = new ScriptCodeStub()
@@ -140,7 +140,7 @@ class ScriptBuilder {
   }
 
   public withDocumentationUrls(urls: readonly string[]): ScriptBuilder {
-    this.documentationUrls = urls;
+    this.docs = urls;
     return this;
   }
 
@@ -148,7 +148,7 @@ class ScriptBuilder {
     return new Script(
       this.name,
       this.code,
-      this.documentationUrls,
+      this.docs,
       this.level,
     );
   }

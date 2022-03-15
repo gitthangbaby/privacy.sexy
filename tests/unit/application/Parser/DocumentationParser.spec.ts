@@ -1,17 +1,17 @@
 import 'mocha';
 import { expect } from 'chai';
 import type { DocumentableData } from '@/application/collections/';
-import { parseDocUrls } from '@/application/Parser/DocumentationParser';
+import { parseDocs } from '@/application/Parser/DocumentationParser';
 import { itEachAbsentObjectValue } from '@tests/unit/shared/TestCases/AbsentTests';
 
 describe('DocumentationParser', () => {
-  describe('parseDocUrls', () => {
+  describe('parseDocs', () => {
     describe('throws when absent', () => {
       itEachAbsentObjectValue((absentValue) => {
         // arrange
         const expectedError = 'missing documentable';
         // act
-        const act = () => parseDocUrls(absentValue);
+        const act = () => parseDocs(absentValue);
         // assert
         expect(act).to.throw(expectedError);
       });
@@ -20,7 +20,7 @@ describe('DocumentationParser', () => {
       // arrange
       const empty: DocumentableData = { };
       // act
-      const actual = parseDocUrls(empty);
+      const actual = parseDocs(empty);
       // assert
       expect(actual).to.have.lengthOf(0);
     });
@@ -30,7 +30,7 @@ describe('DocumentationParser', () => {
       const expected = [url];
       const sut: DocumentableData = { docs: url };
       // act
-      const actual = parseDocUrls(sut);
+      const actual = parseDocs(sut);
       // assert
       expect(actual).to.deep.equal(expected);
     });
@@ -39,7 +39,7 @@ describe('DocumentationParser', () => {
       const expected = ['https://privacy.sexy', 'https://github.com/undergroundwires/privacy.sexy'];
       const sut: DocumentableData = { docs: expected };
       // act
-      const actual = parseDocUrls(sut);
+      const actual = parseDocs(sut);
       // assert
       expect(actual).to.deep.equal(expected);
     });
