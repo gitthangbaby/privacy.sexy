@@ -2175,6 +2175,81 @@ actions:
                                 schtasks /change /tn "Adobe Acrobat Update Task" /enable
                                 schtasks /change /tn "Adobe Flash Player Updater" /enable
             -
+                category: Disable Adobe Acrobat cloud services
+                children:
+                    -
+                        name: Remove sticky tool pane
+                        recommend: none
+                        code: | -
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bRHPSticky" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "aDefaultRHPViewMode_L" /t REG_SZ /d "Collapsed" /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bExpandRHPInViewer" /t REG_DWORD /d 0 /f
+                        revertCode: | -
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bRHPSticky" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "aDefaultRHPViewMode_L" /t REG_SZ /d "Expanded" /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bExpandRHPInViewer" /t REG_DWORD /d 1 /f
+                    -
+                        name: Disable cloud in file dialogs
+                        recommend: none
+                        code: | -
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bToggleCustomOpenExperience" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bToggleCustomSaveExperience" /t REG_DWORD /d 1 /f
+                        revertCode: | -
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bToggleCustomOpenExperience" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\AVGeneral" /v "bToggleCustomSaveExperience" /t REG_DWORD /d 0 /f
+                   -
+                        name: Remove all online services and upsell UI
+                        recommend: none
+                        code: | -
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown" /v "bAcroSuppressUpsell" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\ArmUpsell" /v "bIsEnabled" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cCloud" /v "bAdobeSendPluginToggle" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cCloud" /v "bDisableADCFileStore" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bUpdater" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bToggleAdobeDocumentServices" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bToggleAdobeSign" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bTogglePrefSync" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bToggleWebConnectors" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cWebmailProfiles" /v "bDisableWebmail" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cSharePoint" /v "bDisableSharePointFeatures" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\IPM" /v "bShowMsgAtLaunch" /t REG_DWORD /d 0 /f
+                        revertCode: | -
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown" /v "bAcroSuppressUpsell" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\ArmUpsell" /v "bIsEnabled" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cCloud" /v "bAdobeSendPluginToggle" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cCloud" /v "bDisableADCFileStore" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bUpdater" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bToggleAdobeDocumentServices" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bToggleAdobeSign" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bTogglePrefSync" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices" /v "bToggleWebConnectors" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cWebmailProfiles" /v "bDisableWebmail" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cSharePoint" /v "bDisableSharePointFeatures" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\IPM" /v "bShowMsgAtLaunch" /t REG_DWORD /d 1/f
+                    -
+                        name: Enable auto-complete in forms
+                        recommend: none
+                        code: | -
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FormsPrefs" /v "bInlineAutoComplete" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FormsPrefs" /v "bRecordNewEntries" /t REG_DWORD /d 1 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FormsPrefs" /v "bShowDropDown" /t REG_DWORD /d 1 /f
+                        revertCode: | -
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FormsPrefs" /v "bInlineAutoComplete" /t REG_DWORD /d 0/f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FormsPrefs" /v "bRecordNewEntries" /t REG_DWORD /d 0/f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FormsPrefs" /v "bShowDropDown" /t REG_DWORD /d 0/f
+                    -
+                        name: Disable first start wizards
+                        recommend: none
+                        code: | -
+                            reg add "HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\AVGeneral" /v "bisFirstLaunch" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FTEDialog" /v "bWelcomeCard_RdrInstall" /t REG_DWORD /d 0 /f
+                            reg add "HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\AVGeneral" /v "bappFirstLaunchForNotifications" /t REG_DWORD /d 0 /f
+                        revertCode: | -
+                            reg add "HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\AVGeneral" /v "bisFirstLaunch" /t REG_DWORD /d 1/f
+                            reg add "HKEY_CURRENT_USER\SOFTWARE\Adobe\Acrobat Reader\DC\FTEDialog" /v "bWelcomeCard_RdrInstall" /t REG_DWORD /d 1/f
+                            reg add "HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\AVGeneral" /v "bappFirstLaunchForNotifications" /t REG_DWORD /d 1/f
+                    -
+            -
                 name: Disable Razer Game Scanner Service
                 recommend: standard
                 call:
